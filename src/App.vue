@@ -1,18 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <h1>Bem vindo a {{ title}} </h1>
+    <p v-if="horas > 9 && horas < 18">Aberto!</p>
+    <p v-else>Fechado!</p>
+   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data: function() {
+    return {
+      title: "Locadora de Filmes",
+      horas: new Date().getHours()
+    }
+  }  
 }
 </script>
 
