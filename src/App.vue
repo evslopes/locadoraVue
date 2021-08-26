@@ -36,6 +36,12 @@
                       Alugue agora!
               </span>
               <p class="card-text">{{ filme.valor | formatarPreco("R$")}}</p>
+              <div class="avaliação">
+                <span v-for="n in 5" :key="n"
+                  v-bind:class="{ 'avaliacao-active': checarAvaliacao(n,filme)}">
+                  <img src="./assets/star.png" height="20">
+                </span>
+              </div>
               <a href="#"
                  @click="adicionarAoCarrinho(filme)"
                  v-if="validarPermissaoParaAdicionarNoCarrinho(filme)"
@@ -205,11 +211,11 @@ export default {
         entrega: "Manhã"
       },
       filmes: [
-        { id: 1, titulo: "Vingadores", descricao: "Um <b>filme</b> de heróis", valor: 25, imagem: "assets/logo.png",estoqueDisponivel: 3 },
-        { id: 2, titulo: "Pantera Negra", descricao: "Um filme de panteras", valor: 35, imagem: "assets/logo.png", estoqueDisponivel: 6 },
-        { id: 3, titulo: "Homem-Formiga", descricao: "Um filme de formigas", valor: 20, imagem: "assets/logo.png", estoqueDisponivel: 2 },
-        { id: 4, titulo: "Capitã Marvel", descricao: "Um filme de capitãs", valor: 40, imagem: "assets/logo.png", estoqueDisponivel: 8},
-        { id: 5, titulo: "Hulk", descricao: "Um filme de força", valor: 10, imagem: "assets/logo.png", estoqueDisponivel: 7}
+        { id: 1, titulo: "Vingadores", descricao: "Um <b>filme</b> de heróis", valor: 25, imagem: "assets/logo.png",estoqueDisponivel: 3, avaliacao: 2 },
+        { id: 2, titulo: "Pantera Negra", descricao: "Um filme de panteras", valor: 35, imagem: "assets/logo.png", estoqueDisponivel: 6, avaliacao: 5 },
+        { id: 3, titulo: "Homem-Formiga", descricao: "Um filme de formigas", valor: 20, imagem: "assets/logo.png", estoqueDisponivel: 2 , avaliacao: 3},
+        { id: 4, titulo: "Capitã Marvel", descricao: "Um filme de capitãs", valor: 40, imagem: "assets/logo.png", estoqueDisponivel: 8, avaliacao: 4},
+        { id: 5, titulo: "Hulk", descricao: "Um filme de força", valor: 10, imagem: "assets/logo.png", estoqueDisponivel: 7, avaliacao: 1}
       ],
       carrinho: [],
       estados: {
@@ -241,6 +247,9 @@ export default {
     },
     submitFormulario(){
       alert('Pedido finalizado')
+    },
+    checarAvaliacao(n, filme){
+      return filme.avaliacao - n >= 0;
     }
   },
   computed: {
@@ -276,5 +285,13 @@ export default {
 
 .mensagem-estoque{
   font-weight: bold;
+}
+
+span.avaliacao-active {
+  background-image: url("./assets/star-fill.png");
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 1px;
+  background-size: 20px;
 }
 </style>
