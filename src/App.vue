@@ -16,7 +16,6 @@
       </div>
 
       <div class="row" v-if="mostrarFilmes">
-
         <div class="col-3" v-bind:key="filme.id" v-for="filme in filmes">
           <div class="card">
             <img :src="filme.imagem" class="card-img-top" alt="imagem do filme">
@@ -253,11 +252,22 @@ export default {
     }
   },
   computed: {
-    quantidadeNoCarrinho: function (){
+  /*  filmesOrdenados: function(){
+      if(this.filmes.length > 0) {
+        function compare(a, b) {
+          if(a.titulo.toLowerCase() < b.titulo.toLowerCase())
+            return -1;
+          if(a.titulo.toLowerCase() > b.titulo.toLowerCase())
+            return 1;
+          return 0;
+        }
+        return this.filmes.sort(compare);
+      }
+    },*/
+    quantidadeNoCarrinho: function() {
       return this.carrinho.length;
     }
   }
-
 };
 </script>
 
