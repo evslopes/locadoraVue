@@ -9,10 +9,12 @@
     <div class="row">
       <div class="col">
         <h2>Filmes encontrados</h2>
-        <button
-            type="button"
+        <router-link
+            active-class="active"
+            tag="button"
+            :to="{ name: 'form' }"
             class="btn btn-primary btn-lg"
-        >Carrinho: {{ quantidadeNoCarrinho }} filmes</button>
+        >Carrinho: {{ quantidadeNoCarrinho }} filmes</router-link>
       </div>
     </div>
   </div>
@@ -20,7 +22,7 @@
 
 <script>
 export default {
-  name: 'my-header',
+  name: "my-header",
   props: {
     title: String,
     quantidadeNoCarrinho: Number
@@ -30,7 +32,12 @@ export default {
       horas: new Date().getHours()
     };
   },
-}
+  methods: {
+    mostrarCarrinho() {
+      this.$router.push({ name: "form" });
+    }
+  }
+};
 </script>
 
 <style scoped>

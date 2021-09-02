@@ -1,6 +1,7 @@
 <template>
-<div>
-  <div class="row">
+  <div>
+    <Header class="col-12" title="Locadora de Filmes" />
+
     <h2>Carrinho</h2>
 
     <div class="col-12">
@@ -13,7 +14,7 @@
               id="primeiroNome"
               placeholder="Digita o primeiro nome"
               v-model.trim.lazy="pedido.primeiroNome"
-          >
+          />
         </div>
         <div class="form-group">
           <label for="ultimoNome">Último nome</label>
@@ -23,7 +24,7 @@
               id="ultimoNome"
               placeholder="Digite o último nome"
               v-model.trim.lazy="pedido.ultimoNome"
-          >
+          />
         </div>
         <div class="form-group">
           <label for="endereco">Endereço</label>
@@ -33,7 +34,7 @@
               id="endereco"
               placeholder="Digita o endereço"
               v-model.trim.lazy="pedido.endereco"
-          >
+          />
         </div>
         <div class="form-group">
           <label for="cidade">Cidade</label>
@@ -43,7 +44,7 @@
               id="cidade"
               placeholder="Digita a cidade"
               v-model.trim.lazy="pedido.cidade"
-          >
+          />
         </div>
         <div class="form-group">
           <label for="estado">Estado</label>
@@ -52,9 +53,8 @@
             <option
                 v-for="(estado, key) in estados"
                 v-bind:value="estado"
-                v-bind:key="key">
-              {{ key }}
-            </option>
+                v-bind:key="key"
+            >{{ key }}</option>
           </select>
         </div>
         <div class="form-group">
@@ -65,7 +65,7 @@
               id="cep"
               placeholder="Digita o CEP"
               v-model.number="pedido.cep"
-          >
+          />
         </div>
         <div class="form-group form-check">
           <input
@@ -75,7 +75,7 @@
               v-bind:true-value="pedido.simNaEntrega"
               v-bind:false-value="pedido.naoNaEntrega"
               v-model="pedido.pagoNaEntrega"
-          >
+          />
           <label class="form-check-label" for="pagoNaEntrega">Pago na entrega?</label>
         </div>
         <div class="form-group form-check-inline">
@@ -85,7 +85,7 @@
               id="manha"
               value="Manhã"
               v-model="pedido.entrega"
-          >
+          />
           <label class="form-check-label" for="manha">Manhã</label>
         </div>
         <div class="form-group form-check-inline">
@@ -95,7 +95,7 @@
               id="tarde"
               value="Tarde"
               v-model="pedido.entrega"
-          >
+          />
           <label class="form-check-label" for="tarde">Tarde</label>
         </div>
         <div class="form-group form-check-inline">
@@ -105,24 +105,42 @@
               id="noite"
               value="Noite"
               v-model="pedido.entrega"
-          >
+          />
           <label class="form-check-label" for="noite">Noite</label>
         </div>
 
         <div class="form-group">
-          <button type="submit" class="btn btn-primary" v-on:click="submitFormulario">
-            Finalizar pedido
-          </button>
+          <button
+              type="submit"
+              class="btn btn-primary"
+              v-on:click="submitFormulario"
+          >Finalizar pedido</button>
         </div>
       </form>
     </div>
-</div>
-</div>
+    <div class="col-12">
+      <pre>
+          Primeiro nome: {{ pedido.primeiroNome }}
+          Último nome: {{ pedido.ultimoNome }}
+          Endereço: {{ pedido.endereco }}
+          Cidade: {{ pedido.cidade }}
+          Estado: {{ pedido.estado }}
+          CEP: {{ pedido.cep }}
+          Pago na entrega?: {{ pedido.pagoNaEntrega }}
+          Entrega: {{ pedido.entrega }}
+        </pre>
+    </div>
+  </div>
 </template>
 
 <script>
+import Header from './Header';
+
 export default {
-  name: "Form",
+  name: "my-form",
+  components: {
+    Header
+  },
   data() {
     return {
       pedido: {
@@ -138,21 +156,20 @@ export default {
         entrega: "Manhã"
       },
       estados: {
-        RJ: 'Rio de Janeiro',
-        MG: 'Minas Gerais',
-        SP: 'São Paulo',
-        ES: 'Espírito Santo'
+        RJ: "Rio de Janeiro",
+        MG: "Minas Gerais",
+        SP: "São Paulo",
+        ES: "Espírito Santo"
       }
-    }
+    };
   },
   methods: {
     submitFormulario() {
-      alert('Pedido finalizado');
-    },
+      alert("Pedido finalizado");
+    }
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>

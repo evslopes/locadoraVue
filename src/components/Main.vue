@@ -1,16 +1,16 @@
 <template>
   <div class="row">
-    <Header
-        class="col-12"
-        title="Locadora de Filmes"
-        :quantidadeNoCarrinho="quantidadeNoCarrinho"
-    />
+    <Header class="col-12" title="Locadora de Filmes" :quantidadeNoCarrinho="quantidadeNoCarrinho" />
 
     <div class="col-3" v-bind:key="filme.id" v-for="filme in filmesOrdenados">
       <div class="card">
         <img v-bind:src="filme.imagem" class="card-img-top" alt="imagem do filme" />
         <div class="card-body">
-          <h5 class="card-title">{{ filme.titulo }}</h5>
+          <router-link
+              tag="h5"
+              class="card-title"
+              :to="{ name: 'filme', params: { id: filme.id } }"
+          >{{ filme.titulo }}</router-link>
           <p class="card-text" v-html="filme.descricao"></p>
           <span
               class="mensagem-estoque"
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import Header from './Header';
+import Header from "./Header";
 
 export default {
   name: "my-main",
