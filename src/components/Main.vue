@@ -46,6 +46,7 @@
 
 <script>
 import Header from "./Header";
+import {mapGetters} from "vuex";
 
 export default {
   name: "my-main",
@@ -81,9 +82,7 @@ export default {
     }
   },
   computed: {
-    filmes() {
-      return this.$store.getters.filmes;
-    },
+    ...mapGetters(['filmes']),
     filmesOrdenados() {
       if (this.filmes.length > 0) {
         const compare = function(a, b) {
