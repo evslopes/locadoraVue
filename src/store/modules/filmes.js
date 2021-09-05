@@ -15,8 +15,8 @@ const mutations = {
 };
 
 const actions = {
-    INICIALIZAR_STORE: ({ commit }) => {
-        axios.get('static/filmes.json')
+    INICIALIZAR_STORE: async ({ commit }) => {
+        await axios.get('http://www.mocky.io/v2/5d52306b2e00004f0081d831')
             .then((response) => {
                 console.log(response.data.filmes);
                 commit('SET_STORE', response.data.filmes);
