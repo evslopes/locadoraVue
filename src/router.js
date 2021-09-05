@@ -11,22 +11,22 @@ export default new VueRouter({
     mode: 'history',
     routes : [
         {
-            path: '/',
+            path: '/', // Rota para Home
             name: 'main',
             component: Main
         },
         {
-            path: '/form',
+            path: '/form', // Rota para o formulário
             name: 'form',
             component: Form
         },
         {
-            path: "/filme/:id",
+            path: "/filme/:id", // Rotas dinamicas
             name: 'filme',
             component: Filme,
-            children: [
+            children: [  // Adicionando rotas filhas
                 {
-                    path: 'edit',
+                    path: 'edit', // Direcionada para o ID do filho
                     name: 'editar-filme',
                     component: EditarFilme
                 }

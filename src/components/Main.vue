@@ -52,55 +52,11 @@ export default {
   components: {
     Header
   },
+  created() {
+    this.$store.dispatch('INICIALIZAR_STORE')
+  },
   data() {
     return {
-      filmes: [
-        {
-          id: 1,
-          titulo: "Vingadores",
-          descricao: "Um <b>filme</b> de heróis",
-          valor: 25,
-          imagem: "assets/logo.png",
-          estoqueDisponivel: 3,
-          avaliacao: 2
-        },
-        {
-          id: 2,
-          titulo: "Pantera Negra",
-          descricao: "Um filme de panteras",
-          valor: 35,
-          imagem: "assets/logo.png",
-          estoqueDisponivel: 6,
-          avaliacao: 3
-        },
-        {
-          id: 3,
-          titulo: "Homem-Formiga",
-          descricao: "Um filme de formigas",
-          valor: 20,
-          imagem: "assets/logo.png",
-          estoqueDisponivel: 2,
-          avaliacao: 5
-        },
-        {
-          id: 4,
-          titulo: "Capitã Marvel",
-          descricao: "Um filme de capitãs",
-          valor: 40,
-          imagem: "assets/logo.png",
-          estoqueDisponivel: 8,
-          avaliacao: 4
-        },
-        {
-          id: 5,
-          titulo: "Hulk",
-          descricao: "Um filme de força",
-          valor: 10,
-          imagem: "assets/logo.png",
-          estoqueDisponivel: 7,
-          avaliacao: 1
-        }
-      ],
       carrinho: []
     };
   },
@@ -125,6 +81,9 @@ export default {
     }
   },
   computed: {
+    filmes() {
+      return this.$store.getters.filmes;
+    },
     filmesOrdenados() {
       if (this.filmes.length > 0) {
         const compare = function(a, b) {
